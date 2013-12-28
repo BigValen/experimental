@@ -1,12 +1,13 @@
 import xml.etree.ElementTree as ET
 
+schema = '{http://www.opengis.net/kml/2.2}'
 planning_tree = ET.parse('./Planning_Applications_Archive.kml')
-test_tree = ET.parse('./test.xml')
 planning_root = planning_tree.getroot()
-test_root = test_tree.getroot()
 
-print test_root.findall('country')
-print planning_root.findall('Document')
-print planning_root.findall('Folder')
-print planning_root.findall('name')
+kml = planning_root[0]
+folder = kml.find(schema + 'Folder')
+places = folder.findall(schema+'Placemark')
+
+for place in places:
+  print place.tag, place.attrib
 
