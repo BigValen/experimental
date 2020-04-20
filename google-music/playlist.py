@@ -21,6 +21,7 @@ if not os.path.exists(args.songlist):
 mc = Mobileclient()
 if not mc.oauth_login(Mobileclient.FROM_MAC_ADDRESS):
   mc.perform_oauth()
+  mc.oauth_login(Mobileclient.FROM_MAC_ADDRESS)
 
 playlists=mc.get_all_playlists()
 playlist_id = None
